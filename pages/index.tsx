@@ -6,7 +6,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { Illustration } from "../assets/SVG";
+import HomePage from "../assets/SVG/homePage";
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
 
@@ -48,11 +48,8 @@ export default function CallToActionWithIllustration() {
             Learn more
           </Button>
         </Stack>
-        <Flex w={"full"}>
-          <Illustration
-            height={{ sm: "24rem", lg: "28rem" }}
-            mt={{ base: 12, sm: 16 }}
-          />
+        <Flex w={"full"} style={{ justifyContent: "center" }}>
+          <HomePage />
         </Flex>
       </Stack>
       <Footer />

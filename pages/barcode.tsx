@@ -57,7 +57,7 @@ const Home: NextPage = () => {
               onOpen();
             }
 
-            if (!!error) {
+            if (error?.message !== undefined) {
               console.log(error);
               toast({
                 title: "Error Scanning QR Code",
