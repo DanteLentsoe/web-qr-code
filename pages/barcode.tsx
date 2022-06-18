@@ -15,14 +15,14 @@ const Home: NextPage = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef(null);
-  const [data, setData] = useState<IQRData | null | undefined>(undefined);
+  const [data, setData] = useState<string | null | undefined>(undefined);
 
   const router = useRouter();
 
   useEffect(() => {
     try {
-      if (data?.text.includes("https")) {
-        router.push(data.text);
+      if (data?.includes("https")) {
+        router.push(data);
       }
     } catch (error) {
       console.log(error);
@@ -51,9 +51,9 @@ const Home: NextPage = () => {
               setData(result?.text);
             }
 
-            if (data?.text.includes("https")) {
-              router.push(data.text);
-            } else if (data?.text && !data?.text.includes("https")) {
+            if (data?.includes("https")) {
+              router.push(data);
+            } else if (data && !data?.includes("https")) {
               onOpen();
             }
 
@@ -74,7 +74,7 @@ const Home: NextPage = () => {
           constraints={{ facingMode: "environment" }}
         />
 
-        <p style={{ marginTop: 0 }}>{data?.text}</p>
+        <p style={{ marginTop: 0 }}>{data}</p>
       </>
       <footer className={styles.footer} style={{ bottom: 0, height: 30 }}>
         <a
@@ -94,7 +94,7 @@ const Home: NextPage = () => {
         onOpen={onOpen}
         onClose={onClose}
         finalRef={finalRef}
-        data={data?.text as string | number}
+        data={data as string | number}
       />
     </>
   );
