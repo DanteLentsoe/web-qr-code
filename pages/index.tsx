@@ -6,6 +6,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import HomePage from "../assets/SVG/homePage";
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
@@ -15,6 +16,14 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Web QR Code Scanner </title>
+        <meta
+          name="description"
+          content="Web Code Scanner is a qr code mobile application"
+        />
+        <link rel="icon" href="/" />
+      </Head>
       <Container maxW={"5xl"}>
         <Stack
           textAlign={"center"}

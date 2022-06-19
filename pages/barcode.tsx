@@ -47,9 +47,9 @@ const Home: NextPage = () => {
         <title>Web QR Code Scanner </title>
         <meta
           name="description"
-          content="Culteva Tastings Mobile is a qr code mobile application"
+          content="Web Code Scanner is a qr code mobile application"
         />
-        <link rel="icon" href="/ProvarTastings.png" />
+        <link rel="icon" href="/" />
       </Head>
       <HeaderText />
 
