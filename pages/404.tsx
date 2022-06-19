@@ -2,11 +2,20 @@ import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import PageNotFoundSVG from "../assets/SVG/404SVG";
 import Footer from "../components/footer";
+import Head from "next/head";
 
 export default function NotFound() {
   const route = useRouter();
   return (
     <>
+      <Head>
+        <title>Web QR Code Scanner | Not Found </title>
+        <meta
+          name="description"
+          content="Web Code Scanner is a qr code mobile application"
+        />
+        <link rel="icon" href="/" />
+      </Head>
       <Box textAlign="center" py={10} px={6}>
         <Flex w={"full"} style={{ justifyContent: "center" }}>
           <PageNotFoundSVG />
