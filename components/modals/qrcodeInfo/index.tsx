@@ -18,27 +18,33 @@ interface IQRCodeModal {
   data: string | number;
 }
 
-const QRCodeInfoModal = ({
-  isOpen,
-  onOpen,
-  onClose,
-  finalRef,
-  data,
-}: IQRCodeModal) => {
+const QRCodeInfoModal = ({ isOpen, onClose, finalRef, data }: IQRCodeModal) => {
   return (
     <>
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+        size={"sm"}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader style={{ textAlign: "center" }}>
+            QR Code Info
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{data}</ModalBody>
+          <ModalBody style={{ padding: 12, textAlign: "center", fontSize: 13 }}>
+            {data}
+          </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button
+              rounded={"full"}
+              px={6}
+              colorScheme={"teal"}
+              bg={"teal.600"}
+              onClick={onClose}>
+              Done
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
