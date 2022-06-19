@@ -24,7 +24,7 @@ export default function CallToActionWithIllustration() {
           fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}>
           Web QR Code Scanner{" "}
-          <Text as={"span"} color={"orange.400"}>
+          <Text as={"span"} color={"teal.600"}>
             scanning made easy
           </Text>
         </Heading>
@@ -36,12 +36,12 @@ export default function CallToActionWithIllustration() {
           <Button
             rounded={"full"}
             px={6}
-            colorScheme={"orange"}
-            bg={"orange.400"}
+            colorScheme={"teal"}
+            bg={"teal.600"}
             onClick={() => {
               router.push("/barcode");
             }}
-            _hover={{ bg: "orange.500" }}>
+            _hover={{ bg: "teal.500" }}>
             Get started
           </Button>
           <Button rounded={"full"} px={6}>
