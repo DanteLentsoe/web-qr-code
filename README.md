@@ -1,34 +1,117 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web QR Code Scanner
+
+This is application is intended for leveraging the web to scan QR codes, without having to download QR code scanning for unsupported devices
+
+
+
+
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
+### Prerequisites
+
+- [Node](https://nodejs.org/en/) minimum v12.3.0
+
+
+### Installing
+
+- Clone the repository using SSH
+
+```
+git clone https://github.com/DanteLentsoe/web-qr-code.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Navigate to the cloned repo
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+cd web-qr-code
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- yarn
+- 
+- yarn start 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Environments
 
-To learn more about Next.js, take a look at the following resources:
+There are 2 environments each corresponding to a branch on the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Production - `master` branch
+- Development - `dev` branch
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application is deployed on [vercle](```https://vercel.com/```)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Built With
+
+Details of the tech stack that has been used.
+
+
+- [Nextjs](https://nextjs.org/)
+- [Typescript] (https://www.typescriptlang.org/)
+
+
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/DanteLentsoe/Help-an-en-eye-gee-gee-ay) for details on the followed standards standard for commit messages and the accepted pull request process.
+
+## Authors
+
+- **Dante Lentsoe** <dllentsoe@gmail.com>
+
+## Licenses
+
+
+```
+├─ MIT: 953
+├─ ISC: 78
+├─ BSD-3-Clause: 37
+├─ BSD-2-Clause: 29
+├─ Apache-2.0: 26
+├─ MIT*: 8
+├─ BSD: 5
+├─ (MIT OR CC0-1.0): 5
+├─ CC0-1.0: 4
+├─ WTFPL: 2
+├─ Unlicense: 2
+├─ 0BSD: 2
+├─ Custom: https://github.com/tmcw/jsonlint: 1
+├─ BSD-3-Clause OR MIT: 1
+├─ (MIT OR Apache-2.0): 1
+├─ CC-BY-4.0: 1
+├─ Public Domain: 1
+├─ AFLv2.1,BSD: 1
+├─ (MIT AND Zlib): 1
+├─ (MIT AND BSD-3-Clause): 1
+└─ CC-BY-3.0: 1
+```
+
+
+## Meta
+
+| Version | Author                              | Date       |
+| ------- | ----------------------------------- | ---------- |
+| 1.0.5   | Dante Lentsoe <dllentsoe@gmail.com> | 19/06/2022 |
+
+
+
+```
+Planned Features
+- Dynamic Topic Routes
+- Sign with GitHub
+- Regular Sign Up with Email
+- Score Count Career Index (Using cards to rate a job ,in terms of salary expectations etc) 
+- Direct Messgaging 
+- AWS Image Recognition (To prevent inappropriate images from being loaded)
+
+
+```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+<img width="1380" alt="Screenshot 2022-06-19 at 20 56 27" src="https://user-images.githubusercontent.com/65385487/174498843-58e984d4-2d77-48fa-a292-fe8692738b2c.png">
+
