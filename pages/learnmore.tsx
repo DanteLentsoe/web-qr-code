@@ -3,6 +3,7 @@ import Footer from "../components/footer";
 import Head from "next/head";
 import AboutQRCode from "../components/containlayout";
 import ContentQRCode from "../components/containInfoAbout";
+import NavigationBar from "../components/navigationBar";
 
 export default function LearnMore() {
   const route = useRouter();
@@ -17,6 +18,7 @@ export default function LearnMore() {
         <link rel="icon" href="/" />
       </Head>
 
+      <NavigationBar />
       <AboutQRCode />
 
       <ContentQRCode />

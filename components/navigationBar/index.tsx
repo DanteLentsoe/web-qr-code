@@ -21,10 +21,14 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import { BiBarcodeReader } from "react-icons/bi";
 import { NAV_ITEMS } from "../../contants/data";
 import { NavItem } from "../../contants/types";
+import { useRouter } from "next/router";
 const NavigationBar = () => {
   const { isOpen, onToggle } = useDisclosure();
+
+  const route = useRouter();
 
   return (
     <Box>
@@ -51,14 +55,26 @@ const NavigationBar = () => {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}>
-            Logo
-          </Text>
 
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+          _hover={{ pointer: "cursor" }}>
+          <BiBarcodeReader
+            size={24}
+            onClick={() => {
+              route.push("/");
+            }}
+            style={{ cursor: "pointer" }}
+          />{" "}
+          <Text
+            onClick={() => {
+              route.push("/");
+            }}
+            style={{ cursor: "pointer" }}>
+            {" "}
+            Web QR
+          </Text>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -70,23 +86,15 @@ const NavigationBar = () => {
           direction={"row"}
           spacing={6}>
           <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}>
-            Sign In
-          </Button>
-          <Button
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
-            bg={"pink.400"}
+            bg={"teal.600"}
             _hover={{
-              bg: "pink.300",
+              bg: "teal.400",
             }}>
-            Sign Up
+            Generate QR Codes
           </Button>
         </Stack>
       </Flex>
