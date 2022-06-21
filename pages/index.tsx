@@ -10,6 +10,7 @@ import Head from "next/head";
 import HomePage from "../assets/SVG/homePage";
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
+import NavigationBar from "../components/navigationBar";
 
 export default function Home() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function Home() {
         />
         <link rel="icon" href="/" />
       </Head>
+      <NavigationBar />
       <Container maxW={"5xl"}>
         <Stack
           textAlign={"center"}
@@ -55,7 +57,12 @@ export default function Home() {
               _hover={{ bg: "teal.500" }}>
               Get started
             </Button>
-            <Button rounded={"full"} px={6}>
+            <Button
+              rounded={"full"}
+              px={6}
+              onClick={() => {
+                router.push("/learnmore");
+              }}>
               Learn more
             </Button>
           </Stack>

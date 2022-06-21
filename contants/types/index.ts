@@ -11,3 +11,10 @@ export interface IQRData {
   resultPoints: Array<any>;
   timestamp: number;
 }
+
+export interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
