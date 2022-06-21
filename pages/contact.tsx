@@ -47,31 +47,31 @@ export default function ContactFormWithSocialButtons() {
   //   const { hasCopied, onCopy } = useClipboard("example@example.com");
   const [message, setMessage] = useState(false);
 
-  const handleSubmit = (e: { preventDefault: () => void; target: any }) => {
-    e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_6az72md",
-        "template_80kfr4c",
-        e.target,
-        "user_6pfmIyxWoeG1LaH2IhVyK"
-      )
-      .then(
-        (result: { text: string }) => {
-          console.log(result.text);
-        },
-        (error: { text: string }) => {
-          console.log(error.text);
-          toast.error("Message Not Send :-(", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-        }
-      );
-    setMessage(true);
-    toast.success("Message Send :-)", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
+  // const handleSubmit = (e: { preventDefault: () => void; target: any }) => {
+  //   e.preventDefault();
+  //   emailjs
+  //     .sendForm(
+  //       "service_6az72md",
+  //       "template_80kfr4c",
+  //       e.target,
+  //       "user_6pfmIyxWoeG1LaH2IhVyK"
+  //     )
+  //     .then(
+  //       (result: { text: string }) => {
+  //         console.log(result.text);
+  //       },
+  //       (error: { text: string }) => {
+  //         console.log(error.text);
+  //         toast.error("Message Not Send :-(", {
+  //           position: toast.POSITION.TOP_RIGHT,
+  //         });
+  //       }
+  //     );
+  //   setMessage(true);
+  //   toast.success("Message Send :-)", {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //   });
+  // };
 
   const validateName = (value: string) => {
     let error;
@@ -175,57 +175,52 @@ export default function ContactFormWithSocialButtons() {
                   color={useColorModeValue("gray.700", "whiteAlpha.900")}
                   shadow="base">
                   <VStack spacing={5}>
-                    <Formik
+                    {/* <Formik
                       initialValues={{ name: "Sasuke" }}
                       onSubmit={(values, actions) => {
                         setTimeout(() => {
                           alert(JSON.stringify(values, null, 2));
                           actions.setSubmitting(false);
                         }, 1000);
-                      }}>
-                      {(props) => (
-                        <Form>
-                          {({ field, form }: any) => (
-                            <FormControl isRequired>
-                              <FormLabel>Name</FormLabel>
+                      }}> */}
+                    {/* {(props) => ( */}
+                    <FormControl isRequired>
+                      <FormLabel>Name</FormLabel>
 
-                              <InputGroup>
-                                <InputLeftElement children={<BsPerson />} />
-                                <Input
-                                  type="text"
-                                  name="name"
-                                  placeholder="Your Name"
-                                />
-                              </InputGroup>
-                            </FormControl>
-                          )}
+                      <InputGroup>
+                        <InputLeftElement children={<BsPerson />} />
+                        <Input
+                          type="text"
+                          name="name"
+                          placeholder="Your Name"
+                        />
+                      </InputGroup>
+                    </FormControl>
+                    {/* )} */}
+                    <FormControl isRequired>
+                      <FormLabel>Email</FormLabel>
 
-                          <FormControl isRequired>
-                            <FormLabel>Email</FormLabel>
+                      <InputGroup>
+                        <InputLeftElement children={<MdOutlineEmail />} />
+                        <Input
+                          type="email"
+                          name="email"
+                          placeholder="Your Email"
+                        />
+                      </InputGroup>
+                    </FormControl>
 
-                            <InputGroup>
-                              <InputLeftElement children={<MdOutlineEmail />} />
-                              <Input
-                                type="email"
-                                name="email"
-                                placeholder="Your Email"
-                              />
-                            </InputGroup>
-                          </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel>Message</FormLabel>
 
-                          <FormControl isRequired>
-                            <FormLabel>Message</FormLabel>
-
-                            <Textarea
-                              name="message"
-                              placeholder="Your Message"
-                              rows={6}
-                              resize="none"
-                            />
-                          </FormControl>
-                        </Form>
-                      )}
-                    </Formik>
+                      <Textarea
+                        name="message"
+                        placeholder="Your Message"
+                        rows={6}
+                        resize="none"
+                      />
+                    </FormControl>
+                    {/* </Formik> */}
                     <Button
                       colorScheme="teal"
                       bg="teal.600"
