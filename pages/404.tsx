@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import PageNotFoundSVG from "../assets/SVG/404SVG";
 import Footer from "../components/footer";
 import Head from "next/head";
+import NavigationBar from "../components/navigationBar";
 
 export default function NotFound() {
   const route = useRouter();
@@ -16,6 +17,8 @@ export default function NotFound() {
         />
         <link rel="icon" href="/" />
       </Head>
+
+      <NavigationBar />
       <Box textAlign="center" py={10} px={6}>
         <Flex w={"full"} style={{ justifyContent: "center" }}>
           <PageNotFoundSVG />
