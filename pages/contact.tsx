@@ -15,13 +15,18 @@ import {
   Textarea,
   useColorModeValue,
   VStack,
+  FormErrorMessage,
+  FormHelperText,
 } from "@chakra-ui/react";
-import React from "react";
+import emailjs from "emailjs-com";
+import { useState } from "react";
 import { BsGithub, BsLinkedin, BsPerson } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiDonateHeart } from "react-icons/bi";
 import Footer from "../components/footer";
 import NavigationBar from "../components/navigationBar";
+import { useFormik, Formik, Form } from "formik";
+import Head from "next/head";
 
 const confetti = {
   light: {
@@ -40,9 +45,54 @@ const CONFETTI_DARK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 
 export default function ContactFormWithSocialButtons() {
   //   const { hasCopied, onCopy } = useClipboard("example@example.com");
+  const [message, setMessage] = useState(false);
+
+  const handleSubmit = (e: { preventDefault: () => void; target: any }) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_6az72md",
+        "template_80kfr4c",
+        e.target,
+        "user_6pfmIyxWoeG1LaH2IhVyK"
+      )
+      .then(
+        (result: { text: string }) => {
+          console.log(result.text);
+        },
+        (error: { text: string }) => {
+          console.log(error.text);
+          toast.error("Message Not Send :-(", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      );
+    setMessage(true);
+    toast.success("Message Send :-)", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
+  const validateName = (value: string) => {
+    let error;
+    if (!value) {
+      error = "Name is required";
+    } else if (value.toLowerCase() !== "naruto") {
+      error = "Jeez! You're not a fan 😱";
+    }
+    return error;
+  };
 
   return (
     <>
+      <Head>
+        <title>Web QR Code Scanner | Contact Me </title>
+        <meta
+          name="description"
+          content="Web Code Scanner is a qr code mobile application"
+        />
+        <link rel="icon" href="/" />
+      </Head>
       <NavigationBar />
       <Flex
         bg={useColorModeValue("gray.100", "gray.900")}
@@ -64,7 +114,7 @@ export default function ContactFormWithSocialButtons() {
                   base: "4xl",
                   md: "5xl",
                 }}>
-                Get in Touch
+                Reach Me
               </Heading>
 
               <Stack
@@ -125,43 +175,57 @@ export default function ContactFormWithSocialButtons() {
                   color={useColorModeValue("gray.700", "whiteAlpha.900")}
                   shadow="base">
                   <VStack spacing={5}>
-                    <FormControl isRequired>
-                      <FormLabel>Name</FormLabel>
+                    <Formik
+                      initialValues={{ name: "Sasuke" }}
+                      onSubmit={(values, actions) => {
+                        setTimeout(() => {
+                          alert(JSON.stringify(values, null, 2));
+                          actions.setSubmitting(false);
+                        }, 1000);
+                      }}>
+                      {(props) => (
+                        <Form>
+                          {({ field, form }: any) => (
+                            <FormControl isRequired>
+                              <FormLabel>Name</FormLabel>
 
-                      <InputGroup>
-                        <InputLeftElement children={<BsPerson />} />
-                        <Input
-                          type="text"
-                          name="name"
-                          placeholder="Your Name"
-                        />
-                      </InputGroup>
-                    </FormControl>
+                              <InputGroup>
+                                <InputLeftElement children={<BsPerson />} />
+                                <Input
+                                  type="text"
+                                  name="name"
+                                  placeholder="Your Name"
+                                />
+                              </InputGroup>
+                            </FormControl>
+                          )}
 
-                    <FormControl isRequired>
-                      <FormLabel>Email</FormLabel>
+                          <FormControl isRequired>
+                            <FormLabel>Email</FormLabel>
 
-                      <InputGroup>
-                        <InputLeftElement children={<MdOutlineEmail />} />
-                        <Input
-                          type="email"
-                          name="email"
-                          placeholder="Your Email"
-                        />
-                      </InputGroup>
-                    </FormControl>
+                            <InputGroup>
+                              <InputLeftElement children={<MdOutlineEmail />} />
+                              <Input
+                                type="email"
+                                name="email"
+                                placeholder="Your Email"
+                              />
+                            </InputGroup>
+                          </FormControl>
 
-                    <FormControl isRequired>
-                      <FormLabel>Message</FormLabel>
+                          <FormControl isRequired>
+                            <FormLabel>Message</FormLabel>
 
-                      <Textarea
-                        name="message"
-                        placeholder="Your Message"
-                        rows={6}
-                        resize="none"
-                      />
-                    </FormControl>
-
+                            <Textarea
+                              name="message"
+                              placeholder="Your Message"
+                              rows={6}
+                              resize="none"
+                            />
+                          </FormControl>
+                        </Form>
+                      )}
+                    </Formik>
                     <Button
                       colorScheme="teal"
                       bg="teal.600"
