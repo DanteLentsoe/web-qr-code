@@ -85,17 +85,22 @@ const NavigationBar = () => {
           justify={"flex-end"}
           direction={"row"}
           spacing={6}>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"teal.600"}
-            _hover={{
-              bg: "teal.400",
-            }}>
-            Generate QR Codes
-          </Button>
+          {route?.route !== "/generatecodes" && (
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"teal.600"}
+              onClick={() => {
+                route.push("/generatecodes");
+              }}
+              _hover={{
+                bg: "teal.400",
+              }}>
+              Generate QR Codes
+            </Button>
+          )}
         </Stack>
       </Flex>
 
