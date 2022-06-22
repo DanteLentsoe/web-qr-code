@@ -9,11 +9,11 @@ export const NAV_ITEMS: Array<NavItem> = [
         subLabel: "Scan QR Code using the Web Application",
         href: "/barcode",
       },
-      //   {
-      //     label: "New & Noteworthy",
-      //     subLabel: "Up-and-coming Designers",
-      //     href: "#",
-      //   },
+      {
+        label: "Generate QR Codes",
+        subLabel: "Generate QR Codes for personalized usage",
+        href: "/generatecodes",
+      },
     ],
   },
 

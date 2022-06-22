@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import HeaderText from "../components/headerText";
 import Footer from "../components/footer";
+import NavigationBar from "../components/navigationBar";
 const Home: NextPage = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,13 +45,14 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Web QR Code Scanner </title>
+        <title>Web QR Code Scanner| Scan Code </title>
         <meta
           name="description"
           content="Web Code Scanner is a qr code mobile application"
         />
         <link rel="icon" href="/" />
       </Head>
+      <NavigationBar />
       <HeaderText />
 
       <>
@@ -77,7 +79,7 @@ const Home: NextPage = () => {
                     title: "Error Scanning QR Code",
                     description: error.message,
                     status: "error",
-                    duration: 5000,
+                    duration: 3000,
                     isClosable: true,
                   });
                 }
