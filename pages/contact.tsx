@@ -46,7 +46,7 @@ export default function ContactFormWithSocialButtons() {
   const {
     register,
     handleSubmit,
-
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -151,8 +151,7 @@ export default function ContactFormWithSocialButtons() {
                   shadow="base">
                   <VStack spacing={5}>
                     <form
-                      onSubmit={handleSubmit((data, event) => {
-                        console.log(data);
+                      onSubmit={handleSubmit((_, event) => {
                         emailjs
                           .sendForm(
                             "service_6az72md",
@@ -167,10 +166,12 @@ export default function ContactFormWithSocialButtons() {
                                 title: "Message sent",
                                 description: "You shall hear from me soon",
                                 status: "success",
-                                position: "bottom",
-                                duration: 5000,
+                                position: "top",
+                                duration: 3000,
                                 isClosable: true,
                               });
+
+                              reset();
                             },
                             (error) => {
                               console.log(error.text);
@@ -178,8 +179,8 @@ export default function ContactFormWithSocialButtons() {
                                 title: "Error Sending Message",
                                 description: error as string,
                                 status: "error",
-                                duration: 5000,
-                                position: "bottom",
+                                duration: 3000,
+                                position: "top",
                                 isClosable: true,
                               });
                             }
