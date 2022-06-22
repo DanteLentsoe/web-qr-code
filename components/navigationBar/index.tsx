@@ -12,7 +12,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -36,6 +35,7 @@ const NavigationBar = () => {
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
+        boxShadow={"md"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
