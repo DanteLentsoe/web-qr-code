@@ -105,9 +105,8 @@ Planned Features
 - Dynamic Topic Routes
 - Sign with GitHub
 - Regular Sign Up with Email
-- Score Count Career Index (Using cards to rate a job ,in terms of salary expectations etc) 
-- Direct Messgaging 
-- AWS Image Recognition (To prevent inappropriate images from being loaded)
+- Add Multiple QR Codes that are generated
+
 
 
 ```
