@@ -13,10 +13,13 @@
     "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@playwright/test": "^1.22.2",
     "buffer": "^6.0.3",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^6",
+    "global": "^4.4.0",
     "next": "12.1.6",
+    "playwright": "^1.22.2",
     "qrcode.react": "^3.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -28,7 +31,7 @@
     "recoil": "^0.7.4"
   },
   "devDependencies": {
-    "@types/node": "18.0.0",
+    "@types/node": "^18.0.0",
     "@types/react": "18.0.13",
     "@types/react-dom": "18.0.5",
     "eslint": "8.17.0",

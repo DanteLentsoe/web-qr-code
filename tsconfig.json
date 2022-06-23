@@ -15,6 +15,11 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "index.d.ts",
+    "**/*.tsx",
+    "__test__/ScanQRCode.js"
+  ],
   "exclude": ["node_modules"]
 }

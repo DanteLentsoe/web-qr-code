@@ -118,7 +118,6 @@ const Generatecodes = () => {
                       fontWeight={600}
                       color={"white"}
                       bg={"teal.600"}
-                      // onClick={hideButtonHandler}
                       _hover={{
                         bg: "teal.400",
                       }}>
