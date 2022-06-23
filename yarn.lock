@@ -2740,6 +2740,13 @@ react-style-singleton@^2.2.1:
     invariant "^2.2.4"
     tslib "^2.0.0"
 
+react-to-print@^2.14.7:
+  version "2.14.7"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.14.7.tgz#d288de0e573e6e63e203a48d4bad7a1759d18688"
+  integrity sha512-lWVVAs9Co25uyE0toxcWeFsmaZObwUozXrJD9WMpDPclpBgk+WIzxlt3Q3omL/BCBG/cpf0XNvhayUWa+99YGw==
+  dependencies:
+    prop-types "^15.8.1"
+
 react-web-qr-reader@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-web-qr-reader/-/react-web-qr-reader-1.0.4.tgz#d549c905078bfd757212cac490aa9dbf60466cc3"
