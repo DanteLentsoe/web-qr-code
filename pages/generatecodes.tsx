@@ -1,9 +1,10 @@
 import Head from "next/head";
-import React from "react";
+import React, { ReactInstance, LegacyRef } from "react";
 import Footer from "../components/footer";
 import NavigationBar from "../components/navigationBar";
 import { QRCodeSVG } from "qrcode.react";
-import { useState } from "react";
+import ReactToPrint from "react-to-print";
+import { useState, useRef } from "react";
 import {
   Box,
   Center,
@@ -11,7 +12,7 @@ import {
   Heading,
   Text,
   Stack,
-  Image,
+  Button,
   FormControl,
   FormLabel,
   Input,
@@ -20,9 +21,10 @@ import {
 const Generatecodes = () => {
   const [qrCodeData, setQRCodeData] = useState<undefined | string>();
   const qrCodeHandler = (event: { target: any }) => {
-    // event.target.prevent();
     setQRCodeData(event.target.value);
   };
+
+  let componentRef = useRef<ReactInstance | LegacyRef<HTMLDivElement>>(null);
 
   return (
     <>
@@ -36,7 +38,12 @@ const Generatecodes = () => {
       </Head>
       <NavigationBar />
 
-      <Center py={12}>
+      <Center
+        py={12}
+        ref={(ref: ReactInstance | LegacyRef<HTMLDivElement> | null) =>
+          // @ts-ignore
+          (componentRef = (ref as unknown) as LegacyRef<HTMLDivElement>)
+        }>
         <Box
           role={"group"}
           p={6}
@@ -96,15 +103,31 @@ const Generatecodes = () => {
               <FormLabel htmlFor="name"> QR Code Input </FormLabel>
               <Input
                 id="name"
-                placeholder="QR Code Data  "
+                placeholder="QR Code Data"
                 value={qrCodeData}
                 onChange={qrCodeHandler}
               />
             </FormControl>
 
-            <Stack direction={"row"} align={"center"}>
-              <Text fontWeight={800} fontSize={"xl"}></Text>
-              <Text textDecoration={"line-through"} color={"gray.600"}></Text>
+            <Stack direction={"row"} align={"center"} pt={25}>
+              <ReactToPrint
+                trigger={() => {
+                  return (
+                    <Button
+                      fontSize={"sm"}
+                      fontWeight={600}
+                      color={"white"}
+                      bg={"teal.600"}
+                      // onClick={hideButtonHandler}
+                      _hover={{
+                        bg: "teal.400",
+                      }}>
+                      Print Screen
+                    </Button>
+                  );
+                }}
+                content={() => (componentRef as unknown) as ReactInstance}
+              />
             </Stack>
           </Stack>
         </Box>
