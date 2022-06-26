@@ -11,9 +11,10 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.2",
     "@chakra-ui/react": "^2.2.1",
-    "@emotion/react": "^11",
+    "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11",
     "@playwright/test": "^1.22.2",
+    "@reactour/tour": "^2.11.0",
     "buffer": "^6.0.3",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^6",
