@@ -4,7 +4,8 @@ import Footer from "../components/footer";
 import NavigationBar from "../components/navigationBar";
 import { QRCodeSVG } from "qrcode.react";
 import ReactToPrint from "react-to-print";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useTour } from "@reactour/tour";
 import {
   Box,
   Center,
@@ -16,15 +17,39 @@ import {
   FormControl,
   FormLabel,
   Input,
+  useDisclosure,
 } from "@chakra-ui/react";
+import TourGuideModal from "../components/modals/tourguide";
 
 const Generatecodes = () => {
   const [qrCodeData, setQRCodeData] = useState<undefined | string>();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isTourSeen, setTourSeen] = useState<boolean>(false);
+
+  const { setIsOpen } = useTour();
   const qrCodeHandler = (event: { target: any }) => {
     setQRCodeData(event.target.value);
   };
 
   let componentRef = useRef<ReactInstance | LegacyRef<HTMLDivElement>>(null);
+
+  useEffect(() => {
+    // tour guide
+
+    const isTourDone = localStorage.getItem("takeTour");
+
+    if (
+      isTourDone === null ||
+      (isTourDone === "open" && isTourSeen === false)
+    ) {
+      onOpen();
+
+      localStorage.setItem("takeTour", "open");
+    } else if (isTourSeen === true) {
+      localStorage.setItem("takeTour", "closed");
+      onClose();
+    }
+  }, [isTourSeen, onClose, onOpen]);
 
   return (
     <>
@@ -37,7 +62,6 @@ const Generatecodes = () => {
         <link rel="icon" href="/" />
       </Head>
       <NavigationBar />
-
       <Center
         py={12}
         ref={(ref: ReactInstance | LegacyRef<HTMLDivElement> | null) =>
@@ -87,6 +111,7 @@ const Generatecodes = () => {
                 value={qrCodeData as string}
                 allowReorder="yes"
                 size={120}
+                className="first-step"
               />
             </Center>
           </Box>
@@ -99,7 +124,7 @@ const Generatecodes = () => {
               QR Code Data, numbers, websites..etc
             </Text>
 
-            <FormControl>
+            <FormControl className="second-step">
               <FormLabel htmlFor="name"> QR Code Input </FormLabel>
               <Input
                 id="name"
@@ -116,6 +141,7 @@ const Generatecodes = () => {
                     <Button
                       fontSize={"sm"}
                       fontWeight={600}
+                      className="third-step"
                       color={"white"}
                       bg={"teal.600"}
                       _hover={{
@@ -131,6 +157,13 @@ const Generatecodes = () => {
           </Stack>
         </Box>
       </Center>
+      <TourGuideModal
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        setTourSeen={setTourSeen}
+      />
       <Footer />
     </>
   );
