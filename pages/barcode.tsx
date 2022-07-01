@@ -5,6 +5,8 @@ import Head from "next/head";
 import { QrReader } from "react-qr-reader";
 import { useRouter } from "next/router";
 import QRCodeInfoModal from "../components/modals/qrcodeInfo";
+import Lottie from "react-lottie";
+import * as animationData from "../assets/loader.json";
 import {
   useDisclosure,
   useToast,
@@ -20,18 +22,31 @@ const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef(null);
   const [data, setData] = useState<string | null | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   useEffect(() => {
     try {
       if (data?.includes("https")) {
         router.push(data);
+        setLoading(true);
       } else if (data && !data?.includes("https")) {
         onOpen();
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
+
       toast({
         title: "Error Scanning QR Code",
         description: error as string,
@@ -40,6 +55,8 @@ const Home: NextPage = () => {
         isClosable: true,
       });
     }
+
+    setLoading(false);
   }, [data]);
 
   return (
@@ -66,29 +83,40 @@ const Home: NextPage = () => {
             rounded={"lg"}
             pos={"relative"}
             zIndex={1}>
-            <QrReader
-              onResult={(result, error) => {
-                if (!!result) {
-                  // @ts-ignore
-                  setData(result?.text);
-                }
+            {!loading ? (
+              <QrReader
+                onResult={(result, error) => {
+                  if (!!result) {
+                    // @ts-ignore
+                    setData(result?.text);
+                    setLoading(true);
+                  }
 
-                if (error?.message !== undefined) {
-                  console.log(error);
-                  toast({
-                    title: "Error Scanning QR Code",
-                    description: error.message,
-                    status: "error",
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }
-              }}
-              containerStyle={{
-                innerWidth: "30%",
-              }}
-              constraints={{ facingMode: "environment" }}
-            />
+                  if (error?.message !== undefined) {
+                    console.log(error);
+                    toast({
+                      title: "Error Scanning QR Code",
+                      description: error.message,
+                      status: "error",
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                  }
+                }}
+                containerStyle={{
+                  innerWidth: "30%",
+                }}
+                constraints={{ facingMode: "environment" }}
+              />
+            ) : (
+              <Lottie
+                options={defaultOptions}
+                height={500}
+                width={500}
+                isStopped={false}
+                isPaused={false}
+              />
+            )}
           </Box>
         </Center>
       </>
