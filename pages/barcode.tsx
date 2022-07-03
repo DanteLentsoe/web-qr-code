@@ -25,6 +25,7 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -37,10 +38,12 @@ const Home: NextPage = () => {
   useEffect(() => {
     try {
       if (data?.includes("https")) {
-        router.push(data);
         setLoading(true);
+        router.push(data);
       } else if (data && !data?.includes("https")) {
+        setLoading(false);
         onOpen();
+      } else {
         setLoading(false);
       }
     } catch (error) {
@@ -56,7 +59,7 @@ const Home: NextPage = () => {
       });
     }
 
-    setLoading(false);
+    // setLoading(false);
   }, [data]);
 
   return (
@@ -83,13 +86,12 @@ const Home: NextPage = () => {
             rounded={"lg"}
             pos={"relative"}
             zIndex={1}>
-            {!loading ? (
+            {loading === false ? (
               <QrReader
                 onResult={(result, error) => {
                   if (!!result) {
                     // @ts-ignore
                     setData(result?.text);
-                    setLoading(true);
                   }
 
                   if (error?.message !== undefined) {
