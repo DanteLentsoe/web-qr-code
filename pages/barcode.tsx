@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     try {
-      if (data?.includes("https")) {
+      if (data?.includes("https") || data?.includes("http")) {
         setLoading(true);
         router.push(data);
       } else if (data && !data?.includes("https")) {
