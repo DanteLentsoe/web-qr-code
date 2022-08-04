@@ -27,7 +27,7 @@ const ContentQRCode = () => {
                 bg: "teal.400",
                 zIndex: -1,
               }}>
-              How Do it Works
+              How Does it Works
             </Text>
             <br />
             <Text
