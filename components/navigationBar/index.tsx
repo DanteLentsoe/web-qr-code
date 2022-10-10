@@ -13,22 +13,33 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
+  useColorMode,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  MoonIcon,
+  SunIcon,
 } from "@chakra-ui/icons";
 import { BiBarcodeReader } from "react-icons/bi";
 import { NAV_ITEMS } from "../../contants/data";
 import { NavItem } from "../../contants/types";
 import { useRouter } from "next/router";
+import { useState } from "react";
+
 const NavigationBar = () => {
   const { isOpen, onToggle } = useDisclosure();
-
+  const { toggleColorMode } = useColorMode();
   const route = useRouter();
+  const [isDefaultIcon, setDefaultIcon] = useState<boolean>(true);
 
+  // icon toggler for dark mode
+
+  const handleIconChange = () => {
+    setDefaultIcon(!isDefaultIcon);
+  };
   return (
     <Box>
       <Flex
@@ -85,6 +96,13 @@ const NavigationBar = () => {
           justify={"flex-end"}
           direction={"row"}
           spacing={6}>
+          <Button
+            onClick={() => {
+              toggleColorMode();
+              handleIconChange();
+            }}>
+            {isDefaultIcon ? <MoonIcon /> : <SunIcon />}
+          </Button>
           {route?.route !== "/generatecodes" && (
             <Button
               display={{ base: "none", md: "inline-flex" }}
